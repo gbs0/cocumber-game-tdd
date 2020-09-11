@@ -1,6 +1,6 @@
-require '../lib/bag_of_words'
+require_relative '../lib/bag_of_words'
 
-Rpsec.describe BagOfWords do
+RSpec.describe BagOfWords do
   it "is possible to put words on it" do
     bag = BagOfWords.new
 

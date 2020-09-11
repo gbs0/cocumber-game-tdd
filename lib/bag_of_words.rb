@@ -6,6 +6,6 @@ class BagOfWords
   end
 
   def put(*words)
-    @words
+    @words += words
   end
 end
