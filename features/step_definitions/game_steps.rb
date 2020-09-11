@@ -1,6 +1,6 @@
 require_relative '../../game.rb'
 
-When("Start new game") do
+When('I start a new game') do
   @game = Game.new
   @game.start
 end
