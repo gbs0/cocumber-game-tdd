@@ -6,6 +6,7 @@ RSpec.describe BagOfWords do
 
     bag.put("hello", "world")
 
-    expect(bag.words.size).to eq(2)
+    expected = (bag.words.size == 2)
+    expect(expected).to be_truthy
   end
 end
