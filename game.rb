@@ -1,8 +1,10 @@
 require_relative "lib/window"
+require 'pry'
 require_relative "lib/player"
 
 class Game
-  
+  attr_accessor :player
+
   def initialize
     @state = :initial
     
@@ -22,16 +24,18 @@ class Game
     draw
   end
 
+  def draw
+    binding.pry
+    @window.show.draw(@player)
+
+  end
+  
   def state
     @state
   end
 
   private
   
-  def draw
-    @window.show.draw(@player)
-  end
-
   def set_enemy
     @enemy = []
   end
