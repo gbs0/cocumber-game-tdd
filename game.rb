@@ -1,15 +1,15 @@
 require_relative "lib/window"
+require_relative "lib/player"
 
 class Game
   
   def initialize
     @state = :initial
     @window = GameWindow.new
+    @player = Player.new
   end
 
-
-  def draw
-    # @window.draw
+  def update
   end
 
   def start
