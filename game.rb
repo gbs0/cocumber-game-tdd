@@ -1,16 +1,38 @@
+require_relative "lib/window"
+
 class Game
-  attr_reader :output, :enemy
+  
   def initialize
-    @output = []
-    @enemies = %w[Stormtropper Deadpool Trevor]
-    @enemy = []
+    @state = :initial
+    @window = GameWindow.new
+  end
+
+
+  def draw
+    # @window.draw
   end
 
   def start
-    @output << "Welcome to the matrix game!"
+    set_state
+    draw_window
   end
 
-  def enemy
-    @enemy << @enemies[rand(0..@enemies.size)]
+  def state
+    @state
   end
+
+  private
+  
+  def draw_window
+    @window.show
+  end
+
+  def set_enemy
+    @enemy = []
+  end
+
+  def set_state
+    @state = :started
+  end
+
 end
