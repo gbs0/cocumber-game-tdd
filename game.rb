@@ -5,16 +5,21 @@ class Game
   
   def initialize
     @state = :initial
+    
     @window = GameWindow.new
     @player = Player.new
+    
+    # @enemies = Enemy.new
+    start
   end
 
   def update
+   
   end
 
   def start
     set_state
-    draw_window
+    draw
   end
 
   def state
@@ -23,8 +28,8 @@ class Game
 
   private
   
-  def draw_window
-    @window.show
+  def draw
+    @window.show.draw(@player)
   end
 
   def set_enemy
@@ -36,3 +41,5 @@ class Game
   end
 
 end
+
+Game.new.show if __FILE__ == $0

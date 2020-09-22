@@ -1,7 +1,7 @@
 require 'gosu'
 require_relative '../game'
 
-RSpec.describe "Bonus Matchers - Game State" do
+RSpec.describe "Game Spec" do
   describe "#start" do
     it "Changes State Machine from :initial to :started" do 
       game = Game.new

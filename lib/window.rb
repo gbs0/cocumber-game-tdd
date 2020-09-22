@@ -9,10 +9,9 @@ class GameWindow < Gosu::Window
     super 640, 480
     self.caption = "Gosu Tutorial Game"
 
-    
   end
 
-  def draw
-    #   
+  def draw(player)
+    player.draw
   end
 end
