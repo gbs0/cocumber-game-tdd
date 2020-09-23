@@ -1,22 +1,24 @@
-require_relative "lib/window"
 require 'pry'
+require 'gosu'
 require_relative "lib/player"
 
-class Game
+module ZLayer
+  BACKGROUND, SCENARIO, STARTS, PLAYER, UI = *0..4
+end
+
+class Game < Gosu::Window
   attr_accessor :player
 
   def initialize
+    super 640, 480
+    self.caption = "Gosu Game"
+
     @state = :initial
     
-    @window = GameWindow.new
     @player = Player.new
     
     # @enemies = Enemy.new
     start
-  end
-
-  def update
-   
   end
 
   def start
@@ -24,14 +26,35 @@ class Game
     draw
   end
 
+ 
+
+  def update
+    if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
+      @player.turn_left
+    end
+    if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+      @player.turn_right
+    end
+    if Gosu.button_down? Gosu::KB_UP or Gosu.button_down? Gosu::GP_BUTTON_0
+      @player.accelerate
+    end
+    
+    @player.move
+    # @player.collect_stars(@stars)
+    
+    # if rand(100) < 4 and @stars.size < 25
+    #   @stars.push(Star.new(@star_anim))
+    # end
+  end
+
   def draw
     binding.pry
-    @window.show.draw(@player)
-
-  end
+    @player.image.draw_rot(@x, @y, ZLayer::PLAYER, @angle)
+  end 
   
   def state
     @state
+    print("Game is" + @state)
   end
 
   private
@@ -46,4 +69,4 @@ class Game
 
 end
 
-Game.new.show if __FILE__ == $0
+Game.new if __FILE__ == $0
