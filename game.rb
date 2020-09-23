@@ -18,7 +18,7 @@ class Game < Gosu::Window
     @player = Player.new
     
     # @enemies = Enemy.new
-    start
+    #start
   end
 
   def start
@@ -48,8 +48,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    binding.pry
-    @player.image.draw_rot(@x, @y, ZLayer::PLAYER, @angle)
+    @player.image.draw_rot(@player.x, @player.y, ZLayer::PLAYER, @player.angle)
   end 
   
   def state
@@ -69,4 +68,4 @@ class Game < Gosu::Window
 
 end
 
-Game.new if __FILE__ == $0
+Game.new.show if __FILE__ == $0

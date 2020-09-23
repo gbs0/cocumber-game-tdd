@@ -1,5 +1,6 @@
 class Player
-	
+	attr_accessor :x, :y, :angle, :image
+  
 	attr_reader :score
   
   def initialize
@@ -22,10 +23,6 @@ class Player
 
   def collect_shield(shield)
     
-  end
-  
-  def image
-  	@image
   end
 
 end
