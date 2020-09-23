@@ -24,5 +24,8 @@ class Player
   def collect_shield(shield)
     
   end
-
+  
+  def draw
+  	@image.draw_rot(100, 240, ZLayer::PLAYER, @angle)
+  end
 end

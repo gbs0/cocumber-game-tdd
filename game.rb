@@ -48,7 +48,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @player.image.draw_rot(@player.x, @player.y, ZLayer::PLAYER, @player.angle)
+    @player.draw
   end 
   
   def state
