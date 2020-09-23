@@ -1,5 +1,5 @@
 class Player
-	attr_accessor :x, :y, :angle, :image
+	attr_accessor :x, :y, :angle, :image, :vel_x, :vel_y
   
 	attr_reader :score
   
@@ -9,8 +9,11 @@ class Player
   	@score = 0
   end
 
-  def accelerate
+  def accelerate_x
     @vel_x += Gosu.offset_x(@angle, 0.5)
+  end
+
+  def accelerate_y
     @vel_y += Gosu.offset_y(@angle, 0.5)
   end
 

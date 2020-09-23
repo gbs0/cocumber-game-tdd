@@ -1,6 +1,7 @@
 require 'pry'
 require 'gosu'
 require_relative "lib/player"
+require_relative "lib/shield"
 
 module ZLayer
   BACKGROUND, SCENARIO, STARTS, PLAYER, UI = *0..4
@@ -12,10 +13,10 @@ class Game < Gosu::Window
   def initialize
     super 640, 480
     self.caption = "Gosu Game"
-
     @state = :initial
-    
     @player = Player.new
+
+    @shields = Shield.new
     
     # @enemies = Enemy.new
     #start
@@ -26,17 +27,18 @@ class Game < Gosu::Window
     draw
   end
 
- 
-
   def update
-    if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
-      @player.turn_left
+    if Gosu.button_down? Gosu::KB_A or Gosu.button_down? Gosu::GP_LEFT
+      @player.accelerate_x
     end
-    if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
-      @player.turn_right
+    if Gosu.button_down? Gosu::KB_D or Gosu.button_down? Gosu::GP_RIGHT
+      @player.accelerate_x
     end
-    if Gosu.button_down? Gosu::KB_UP or Gosu.button_down? Gosu::GP_BUTTON_0
-      @player.accelerate
+    if Gosu.button_down? Gosu::KB_W or Gosu.button_down? Gosu::GP_BUTTON_0
+      @player.accelerate_y
+    end
+    if Gosu.button_down? Gosu::KB_S or Gosu.button_down? Gosu::GP_BUTTON_0
+      @player.accelerate_y
     end
     
     @player.move
@@ -49,6 +51,7 @@ class Game < Gosu::Window
 
   def draw
     @player.draw
+    @shields.each { |shield| shield.draw }
   end 
   
   def state
