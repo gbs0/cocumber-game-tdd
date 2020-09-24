@@ -4,7 +4,7 @@ require_relative "lib/player"
 require_relative "lib/shield"
 
 module ZLayer
-  BACKGROUND, SCENARIO, STARTS, PLAYER, UI = *0..4
+  BACKGROUND, SCENARIO, STARS, PLAYER, UI = *0..4
 end
 
 class Game < Gosu::Window
@@ -51,7 +51,7 @@ class Game < Gosu::Window
 
   def draw
     @player.draw
-    @shields.each { |shield| shield.draw }
+    @shields.draw
   end 
   
   def state
