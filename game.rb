@@ -8,14 +8,14 @@ module ZLayer
 end
 
 class Game < Gosu::Window
-  attr_accessor :player
+  attr_accessor :player, :phase
 
   def initialize
     super 640, 480
     self.caption = "Gosu Game"
     @state = :initial
     @player = Player.new
-
+    @phase = :first
     @shields = Shield.new
     
     # @enemies = Enemy.new
