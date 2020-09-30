@@ -15,23 +15,20 @@ RSpec.describe Game do
     end
   end
 
-  describe "in the final phase" do
-    
+  describe "in the final phase" do   
     before do
       @game = Game.new
       @game.phase = :final
     end
 
     context "when the player hits the target" do
+      before { @game.player.hits_target}
+      
       it "congratulates the player" do
-        @game.player.hits_target
-
         expect(@game.output).to eq("Congratulations!")
       end
 
       it "sets the score to 100" do
-        @game.player.hits_target
-
         expect(@game.player.score).to eq(100)
       end
     end
