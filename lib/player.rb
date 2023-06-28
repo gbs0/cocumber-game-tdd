@@ -3,7 +3,7 @@ require_relative 'bullet'
 require 'pry'
 
 class Player
-  attr_accessor :x, :y, :angle, :image, :vel_x, :vel_y, :dead, :active_shield, :bullets
+  attr_accessor :x, :y, :angle, :image, :vel_x, :vel_y, :dead, :active_shield, :bullets, :radius, :inventory
   
 	# attr_reader :score
 
@@ -18,6 +18,7 @@ class Player
     @active_shield = false
     @bullets = []
     @fire_rate = 0.5
+    @inventory = []
   end
 
   # def accelerate_x
@@ -44,7 +45,11 @@ class Player
     @x += @default_speed
   end
 
-  def move
+  def radius
+    @radius ||= @image.width / 2
+  end
+
+  def update
   	@x += @vel_x
   	@y += @vel_y
     # @x %= 380 # Position Loop in X axis
@@ -79,5 +84,9 @@ class Player
 
   def increase_firerate
     @fire_rate += 0.001
+  end
+
+  def collide?(object)
+    RigidBody.collide?(self, object)
   end
 end

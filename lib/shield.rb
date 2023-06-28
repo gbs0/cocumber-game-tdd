@@ -8,13 +8,13 @@ class Shield
   end
 
   def draw
-    @image.draw(@x / 2.0, @y / 2.0, ZLayer::SHIELD, 1, 1)
+    @image.draw_rot(@x / 2.0, @y / 2.0, ZLayer::SHIELD, 1)
     # angle = (Gosu::milliseconds / 15) % 360
     # @image.draw_rot(@x, @y, ZOrder::Ship, angle, 0.5, 0.5, 0.75, 0.75, 0xff3366ff)
   end
 
   def radius
-    45
+    25
   end
     
   def update # Method to put shield in player's ship
