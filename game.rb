@@ -74,7 +74,8 @@ class Game < Gosu::Window
       @player.move_down
     end
     
-    # @player.shoot if Gosu.button_down? Gosu::KB_SPACE
+    @player.shoot if Gosu.button_down? Gosu::KB_SPACE
+    close if Gosu.button_down? Gosu::KB_ESCAPE
   end
 
 end

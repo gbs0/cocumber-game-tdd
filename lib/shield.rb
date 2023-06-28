@@ -2,7 +2,7 @@ class Shield
   attr_accessor :x, :y
 
   def initialize
-  	@image = Gosu::Image.new("media/shield.png");
+  	@image = Gosu::Image.new("media/shield_item.png");
   	@x = rand * 630
   	@y = rand * 470
   end
