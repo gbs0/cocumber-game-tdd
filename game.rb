@@ -3,6 +3,7 @@ require 'gosu'
 require_relative "lib/player"
 require_relative "lib/shield"
 require_relative "lib/modules/z_layer"
+require_relative "lib/modules/utilities"
 
 class Game < Gosu::Window
 
