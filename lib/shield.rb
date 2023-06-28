@@ -8,8 +8,6 @@ class Shield
   end
 
   def draw
-    
-    @image.draw(@x / 2.0, @y / 2.0,
-        ZLayer::STARS, 1, 1)
+    @image.draw(@x / 2.0, @y / 2.0, ZLayer::SHIELD, 1, 1)
   end
 end

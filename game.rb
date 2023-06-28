@@ -2,12 +2,11 @@ require 'pry'
 require 'gosu'
 require_relative "lib/player"
 require_relative "lib/shield"
-
-module ZLayer
-  BACKGROUND, SCENARIO, STARS, PLAYER, UI = *0..4
-end
+require_relative "lib/modules/z_layer"
 
 class Game < Gosu::Window
+
+  include ZLayer
   attr_accessor :player, :phase
 
   def initialize
@@ -17,7 +16,7 @@ class Game < Gosu::Window
     @player = Player.new
     @phase = :first
     @shields = Shield.new
-    
+    # @enemies = Enemy.builder(@phase)
     # @enemies = Enemy.new
     #start
   end
@@ -27,21 +26,11 @@ class Game < Gosu::Window
     draw
   end
 
-  def update
-    if Gosu.button_down? Gosu::KB_A or Gosu.button_down? Gosu::GP_LEFT
-      @player.accelerate_x
-    end
-    if Gosu.button_down? Gosu::KB_D or Gosu.button_down? Gosu::GP_RIGHT
-      @player.accelerate_x
-    end
-    if Gosu.button_down? Gosu::KB_W or Gosu.button_down? Gosu::GP_BUTTON_0
-      @player.accelerate_y
-    end
-    if Gosu.button_down? Gosu::KB_S or Gosu.button_down? Gosu::GP_BUTTON_0
-      @player.accelerate_y
-    end
-    
+  def update 
     @player.move
+    # unless !@player.bullets.empty?
+    #   @player.bullets.each { |bullet| bullet.move }
+    # end
     # @player.collect_stars(@stars)
     
     # if rand(100) < 4 and @stars.size < 25
@@ -50,13 +39,15 @@ class Game < Gosu::Window
   end
 
   def draw
+    inputs
     @player.draw
     @shields.draw
+    # @enemies.draw
   end 
   
   def state
     @state
-    print("Game is" + @state)
+    puts("Game is" + @state)
   end
 
   private
@@ -67,6 +58,23 @@ class Game < Gosu::Window
 
   def set_state
     @state = :started
+  end
+
+  def inputs
+    if Gosu.button_down? Gosu::KB_A or Gosu.button_down? Gosu::GP_LEFT
+      @player.move_left
+    end
+    if Gosu.button_down? Gosu::KB_D or Gosu.button_down? Gosu::GP_RIGHT
+      @player.move_right
+    end
+    if Gosu.button_down? Gosu::KB_W or Gosu.button_down? Gosu::GP_BUTTON_0
+      @player.move_up
+    end
+    if Gosu.button_down? Gosu::KB_S or Gosu.button_down? Gosu::GP_BUTTON_0
+      @player.move_down
+    end
+    
+    # @player.shoot if Gosu.button_down? Gosu::KB_SPACE
   end
 
 end
